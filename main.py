@@ -37,7 +37,7 @@ def write_csv(items):
 
 # Endpoint CRUD
 
-# Create
+# Create (POST)
 @app.post("/items/")
 def create_item(item: Item):
     items = read_csv()
@@ -49,13 +49,13 @@ def create_item(item: Item):
     return item
 
 
-# Read all
+# Read all (GET per ottenere tutti i record)
 @app.get("/items/")
 def get_items():
     return read_csv()
 
 
-# Read one
+# Read one (GET per ottenere un singolo record basato sull'ID)
 @app.get("/items/{item_id}")
 def get_item(item_id: int):
     items = read_csv()
@@ -65,7 +65,7 @@ def get_item(item_id: int):
     raise HTTPException(status_code=404, detail="Item not found")
 
 
-# Update
+# Update (PUT)
 @app.put("/items/{item_id}")
 def update_item(item_id: int, updated_item: Item):
     items = read_csv()
@@ -77,7 +77,7 @@ def update_item(item_id: int, updated_item: Item):
     raise HTTPException(status_code=404, detail="Item not found")
 
 
-# Delete
+# Delete 
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
     items = read_csv()
@@ -88,7 +88,7 @@ def delete_item(item_id: int):
     return {"message": "Item deleted successfully"}
 
 
-# Count
+# Count (GET per ottenere il numero di righe nel CSV)
 @app.get("/items/count")
 def get_count():
     items = read_csv()
