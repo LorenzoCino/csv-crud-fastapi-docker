@@ -1,0 +1,8 @@
+# Ignora file di cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignora file CSV locali
+data.csv
