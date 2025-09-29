@@ -55,6 +55,12 @@ def get_items():
     return read_csv()
 
 
+# Count (GET per ottenere il numero di righe nel CSV)
+@app.get("/items/count")
+def get_count():
+    items = read_csv()
+    return {"count": len(items)}
+
 # Read one (GET per ottenere un singolo record basato sull'ID)
 @app.get("/items/{item_id}")
 def get_item(item_id: int):
@@ -86,10 +92,3 @@ def delete_item(item_id: int):
         raise HTTPException(status_code=404, detail="Item not found")
     write_csv(new_items)
     return {"message": "Item deleted successfully"}
-
-
-# Count (GET per ottenere il numero di righe nel CSV)
-@app.get("/items/count")
-def get_count():
-    items = read_csv()
-    return {"count": len(items)}
